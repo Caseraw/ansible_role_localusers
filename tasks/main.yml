@@ -1,0 +1,82 @@
+---
+- name: Ensure package prerequisites are managed
+  package:
+    name: '{{ role_localusers_required_packages }}'
+    state: present
+
+- name: Populate group list
+  set_fact:
+    role_localusers_group_list: '{{ role_localusers_group_list | default([]) + vars[item] }}'
+  loop: "{{ vars.keys() | select('match', '^role_localusers_group_list_.*$') | list }}"
+
+- name: Ensure groups are managed
+  group:
+    name: '{{ item.name }}'
+    gid: '{{ item.gid | default(omit) }}'
+    state: '{{ item.state }}'
+    system: '{{ item.system | default(omit) }}'
+    local: '{{ item.local | default(omit) }}'
+  loop: '{{ role_localusers_group_list | default([]) }}'
+
+- name: Populate user list
+  set_fact:
+    role_localusers_user_list: '{{ role_localusers_user_list | default([]) + vars[item] }}'
+  loop: "{{ vars.keys() | select('match', '^role_localusers_user_list_.*$') | list }}"
+
+- name: Ensure users are managed
+  user:
+    name: '{{ item.name }}'
+    comment: '{{ item.comment }}'
+    uid: '{{ item.uid | default(omit) }}'
+    non_unique: '{{ item.non_unique | default(omit) }}'
+    state: '{{ item.state }}'
+    remove: '{{ item.remove | default(omit) }}'
+    force: '{{ item.force | default(omit) }}'
+    local: '{{ item.local | default(omit) }}'
+    password: '{{ item.password | default(omit) }}'
+    password_lock: '{{ item.password_lock | default(omit) }}'
+    update_password: '{{ item.update_password | default(omit) }}'
+    expires: '{{ item.expires | default(omit) }}'
+    home: '{{ item.home | default(omit) }}'
+    move_home: '{{ item.move_home | default(omit) }}'
+    create_home: '{{ item.create_home | default(omit) }}'
+    profile: '{{ item.profile | default(omit) }}'
+    skeleton: '{{ item.skeleton | default(omit) }}'
+    shell: '{{ item.shell | default(omit) }}'
+    system: '{{ item.system | default(omit) }}'
+    seuser: '{{ item.seuser | default(omit) }}'
+    role: '{{ item.role | default(omit) }}'
+    group: '{{ item.group | default(omit) }}'
+    groups: '{{ item.groups | default(omit) }}'
+    append: '{{ item.groups | default(omit) }}'
+    login_class: '{{ item.login_class | default(omit) }}'
+    authorization: '{{ item.login_class | default(omit) }}'
+    hidden: '{{ item.login_class | default(omit) }}'
+    ssh_key_type: '{{ item.ssh_key_type | default(omit) }}'
+    ssh_key_passphrase: '{{ item.ssh_key_passphrase | default(omit) }}'
+    ssh_key_file: '{{ item.ssh_key_file | default(omit) }}'
+    ssh_key_comment: '{{ item.ssh_key_comment | default(omit) }}'
+    ssh_key_bits: '{{ item.ssh_key_bits | default(omit) }}'
+    generate_ssh_key: '{{ item.generate_ssh_key | default(omit) }}'
+  loop: '{{ role_localusers_user_list | default([]) }}'
+  no_log: True
+
+- name: Manage users authorized ssh key
+  authorized_key:
+    user: '{{ item.name }}'
+    state: '{{ item.authorized_key_state }}'
+    comment: '{{ item.authorized_key_comment | default(omit) }}'
+    key: '{{ item.authorized_key_files | default(omit) }}'
+    key_options: '{{ item.authorized_key_options | default(omit) }}'
+    path: '{{ item.authorized_key_path | default(omit) }}'
+    validate_certs: '{{ item.authorized_key_validate_certs | default(omit) }}'
+    exclusive: '{{ item.authorized_key_exclusive | default(omit) }}'
+    follow: '{{ item.authorizted_key_follow | default(omit) }}'
+    manage_dir: '{{ item.authorizted_key_manage_dir | default(omit) }}'
+  loop: '{{ role_localusers_user_list | default([]) }}'
+  when:
+    - item.authorized_key_enable | default(False) | bool
+    - item.state == 'present'
+  no_log: True
+
+...

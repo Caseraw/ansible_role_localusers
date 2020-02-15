@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  become: True
+  gather_facts: False
+  roles:
+   - role: ansible_role_localusers
+
+...

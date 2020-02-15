@@ -1,0 +1,41 @@
+---
+### Managing user groups.
+## Minimum required values: 'name' and 'state'
+##
+## For better maintainability, the group list is built during runtime by
+## combining all lists together. This will provide the freedom of declaring
+## custom group lists for granular control. The lists require a naming
+## convention by using a pattern. The pattern is rendered as a single list
+## which can be used for iteration with variable: 'role_localusers_group_list'
+## The list name pattern needs to start with: 'role_localusers_group_list_'
+
+## Example of a list for default inheritance:
+# role_localusers_group_list_default:
+#   - name: group1
+#     state: present
+#   - name: group2
+#     state: absent
+
+## More examples at: '{{ role_path }}/molecule/default/vars_test_groups.yml'
+## This file is used to verify tests with and contains some possible variants.
+
+## Managing users
+## Minimum required values: 'name' and 'state'
+##
+## For better maintainability, the user list is built during runtime by
+## combining all lists together. This will provide the freedom of declaring
+## custom group lists for granular control. The lists require a naming
+## convention by using a pattern. The pattern is rendered as a single list
+## which can be used for iteration with variable: 'role_localusers_user_list'
+## The list name pattern needs to start with: 'role_localusers_user_list_'
+
+## Example of a list for default inheritance:
+# role_localusers_user_list_default:
+#   - name: user1
+#     state: present
+#   - name: user2
+#     comment: user2 comment
+#     state: absent
+
+## More examples at: '{{ role_path }}/molecule/default/vars_test_users.yml'
+## This file is used to verify tests with and contains some possible variants.

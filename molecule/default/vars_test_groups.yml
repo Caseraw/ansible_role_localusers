@@ -1,0 +1,92 @@
+---
+role_localusers_group_list_default:
+  - name: regular_group1
+    state: present
+  - name: regular_group2
+    state: absent
+  - name: regular_group3
+    state: present
+    system: False
+  - name: regular_group4
+    state: present
+    system: False
+    local: True
+  - name: regular_group5
+    state: present
+    system: False
+    local: True
+    gid: '4000'
+  - name: regular_group6
+    state: present
+    system: False
+    local: False
+    gid: '4001'
+
+role_localusers_group_list_system:
+  - name: regular_system1
+    state: present
+    system: True
+  - name: regular_system2
+    state: absent
+    system: True
+  - name: regular_system3
+    state: present
+    system: True
+    local: True
+  - name: regular_system4
+    state: present
+    system: True
+    local: True
+    gid: '4002'
+  - name: regular_system5
+    state: present
+    system: True
+    local: False
+    gid: '4003'
+
+role_localusers_group_list_service:
+  - name: regular_service1
+    state: present
+    system: True
+  - name: regular_service2
+    state: absent
+    system: True
+  - name: regular_service3
+    state: present
+    system: True
+    local: True
+  - name: regular_service4
+    state: present
+    system: True
+    local: True
+    gid: '4004'
+  - name: regular_service5
+    state: present
+    system: True
+    local: False
+    gid: '4005'
+
+role_localusers_group_list_application:
+  - name: regular_app1
+    state: present
+  - name: regular_app2
+    state: absent
+  - name: regular_app3
+    state: present
+    system: False
+  - name: regular_app4
+    state: present
+    system: False
+    local: True
+  - name: regular_app5
+    state: present
+    system: False
+    local: True
+    gid: '4008'
+  - name: regular_app6
+    state: present
+    system: False
+    local: False
+    gid: '4009'
+
+...
