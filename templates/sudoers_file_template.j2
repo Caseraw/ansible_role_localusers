@@ -1,0 +1,33 @@
+# {{ ansible_managed }}
+
+# Defaults
+{% for line in item.defaults | default([]) %}
+{{ line }}
+{% endfor %}
+
+# Host Aliases
+{% for line in item.host_alias | default([]) %}
+{{ line }}
+{% endfor %}
+
+# User Aliases
+{% for line in item.user_alias | default([]) %}
+{{ line }}
+{% endfor %}
+
+# RunAs Aliases
+{% for line in item.runas_alias | default([]) %}
+{{ line }}
+{% endfor %}
+
+# Command Aliases
+{% for line in item.cmd_alias | default([]) %}
+{{ line }}
+{% endfor %}
+
+# User Specification
+{% for line in item.user_specification | default([]) %}
+{{ line }}
+{% endfor %}
+
+{% if item.includedir is defined %}#includedir {{ item.includedir }}{% else %}# No other file includes {% endif %}
