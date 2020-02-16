@@ -2,6 +2,8 @@
 
 Managing local users and groups.
 
+[![Build Status](https://travis-ci.org/Caseraw/ansible_role_localusers.svg?branch=master)](https://travis-ci.org/Caseraw/ansible_role_localusers) [<img src="https://img.shields.io/ansible/role/46592">](https://galaxy.ansible.com/caseraw/ansible_role_localusers) [<img src="https://img.shields.io/ansible/role/d/46592">](https://galaxy.ansible.com/caseraw/ansible_role_localusers) [<img src="https://img.shields.io/ansible/quality/46592">](https://galaxy.ansible.com/caseraw/ansible_role_localusers)
+
 - [Ansible role localusers](#ansible-role-localusers)
   - [License](#license)
   - [Author Information](#author-information)
