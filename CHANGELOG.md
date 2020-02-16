@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v1.0.0
+
+**Functionalities:**
+
+- Managed user creation, modifications and removal.
+- Managed group creation, modifications and removal.
+- Managed sudoers files creation, modifications and removal.
+
 ## v0.1.0
 
 Creation of the Ansible localusers role.
