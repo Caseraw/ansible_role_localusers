@@ -51,10 +51,12 @@ Compatible with the following list of operating systems:
 | Variable name | Description |
 |---------------|-------------|
 | role_localusers_required_packages | List of required packages. |
-| role_localusers_group_list | Combined list of other lists that start with the name `role_localusers_group_list_`. Examples at: [molecule/default/vars_test_groups.yml](molecule/default/vars_test_groups.yml). |
-| role_localusers_user_list | Combined list of other lists that start with the name `role_localusers_user_list_`. Examples at: [molecule/default/vars_test_users.yml](molecule/default/vars_test_users.yml) |
+| role_localusers_group_list | Combined list of other lists that start with the name `role_localusers_group_list_`. Examples at: [molecule/default/vars/vars_test_groups.yml](molecule/default/vars/vars_test_groups.yml). |
+| role_localusers_user_list | Combined list of other lists that start with the name `role_localusers_user_list_`. Examples at: [molecule/default/vars/vars_test_users.yml](molecule/default/vars/vars_test_users.yml) |
+| role_localusers_sudoers_list | Combined list of other lists that start with the name `role_localusers_sudoers_list_`. Examples at: [molecule/default/vars/vars_test_users.yml](molecule/default/vars/vars_test_sudoers.yml) |
 
 >If the group or user list is empty, no activities will take place.
+>The default sudoers is set to a recommended default, [review it](defaults/main.yml) before using it.
 
 ## Example Playbook
 
