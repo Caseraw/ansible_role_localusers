@@ -1,0 +1,53 @@
+---
+role_localusers_sudoers_list_default:
+  - path: /etc/sudoers
+    state: present
+    defaults:
+      - 'Defaults !visiblepw'
+      - 'Defaults always_set_home'
+      - 'Defaults match_group_by_gid'
+      - 'Defaults always_query_group_plugin'
+      - 'Defaults always_query_group_plugin'
+      - 'Defaults env_reset'
+      - 'Defaults env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS"'
+      - 'Defaults env_keep += "MAIL QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE"'
+      - 'Defaults env_keep += "LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES"'
+      - 'Defaults env_keep += "LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE"'
+      - 'Defaults env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY"'
+      - 'Defaults secure_path = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    includedir: /etc/sudoers.d
+    host_alias: []
+    user_alias: []
+    runas_alias: []
+    cmd_alias: []
+    user_specification:
+      - 'root ALL=(ALL) ALL'
+      - '%wheel ALL=(ALL) ALL'
+
+role_localusers_sudoers_list_users:
+  - path: /etc/sudoers.d/remove_file
+    state: present
+  - path: /etc/sudoers.d/empty_file
+    state: present
+  - path: /etc/sudoers.d/readonly_logs
+    state: present
+    defaults: []
+    host_alias: []
+    user_alias:
+      - 'User_Alias READ_USERS = %readonly_logs'
+    runas_alias:
+      - 'Runas_Alias PRIVILEGED = root'
+    cmd_alias:
+      - 'Cmnd_Alias LS_REMOTEHOSTS    = /bin/ls * /var/log/*'
+      - 'Cmnd_Alias GREP_REMOTEHOSTS  = /bin/grep * /var/log/*'
+      - 'Cmnd_Alias ZGREP_REMOTEHOSTS = /bin/zgrep * /var/log/*'
+      - 'Cmnd_Alias CAT_REMOTEHOSTS   = /usr/bin/cat * /var/log/*'
+      - 'Cmnd_Alias ZCAT_REMOTEHOSTS  = /bin/zcat * /var/log/*'
+      - 'Cmnd_Alias MORE_REMOTEHOSTS  = /bin/more * /var/log/*'
+      - 'Cmnd_Alias ZMORE_REMOTEHOSTS = /bin/zmore * /var/log/*'
+      - 'Cmnd_Alias TAIL_REMOTEHOSTS  = /bin/tail * /var/log/*'
+      - 'Cmnd_Alias HEAD_REMOTEHOSTS  = /bin/head * /var/log/*'
+    user_specification:
+      - 'READ_USERS  ALL  = (PRIVILEGED) NOPASSWD: LS_REMOTEHOSTS, GREP_REMOTEHOSTS, ZGREP_REMOTEHOSTS, CAT_REMOTEHOSTS, ZCAT_REMOTEHOSTS, LESS_REMOTEHOSTS, ZLESS_REMOTEHOSTS, MORE_REMOTEHOSTS, ZMORE_REMOTEHOSTS, TAIL_REMOTEHOSTS, HEAD_REMOTEHOSTS'
+
+...
