@@ -9,6 +9,8 @@
 ## which can be used for iteration with variable: 'role_localusers_group_list'
 ## The list name pattern needs to start with: 'role_localusers_group_list_'
 
+role_localusers_group_list_default: []
+
 ## Example of a list for default inheritance:
 # role_localusers_group_list_default:
 #   - name: group1
@@ -16,7 +18,7 @@
 #   - name: group2
 #     state: absent
 
-## More examples at: '{{ role_path }}/molecule/default/vars_test_groups.yml'
+## More examples at: 'molecule/default/vars/vars_test_groups.yml'
 ## This file is used to verify tests with and contains some possible variants.
 
 ## Managing users
@@ -29,6 +31,8 @@
 ## which can be used for iteration with variable: 'role_localusers_user_list'
 ## The list name pattern needs to start with: 'role_localusers_user_list_'
 
+role_localusers_user_list_default: []
+
 ## Example of a list for default inheritance:
 # role_localusers_user_list_default:
 #   - name: user1
@@ -37,5 +41,48 @@
 #     comment: user2 comment
 #     state: absent
 
-## More examples at: '{{ role_path }}/molecule/default/vars_test_users.yml'
+## More examples at: 'molecule/default/vars/vars_test_users.yml'
 ## This file is used to verify tests with and contains some possible variants.
+
+## Managing sudoers files
+## Minimum required values: 'path' and 'state'
+##
+## For better maintainability, the sudoers file list is built during runtime by
+## combining all lists together. This will provide the freedom of declaring
+## custom group lists for granular control. The lists require a naming
+## convention by using a pattern. The pattern is rendered as a single list
+## which can be used for iteration with variable: 'role_localusers_sudoers_list'
+## The list name pattern needs to start with: 'role_localusers_sudoers_list_'
+
+role_localusers_sudoers_list_default: []
+
+## Example of a list for default inheritance:
+# role_localusers_sudoers_list_default:
+#   - path: /etc/sudoers
+#     state: present
+#     defaults:
+#       - 'Defaults !visiblepw'
+#       - 'Defaults always_set_home'
+#       - 'Defaults match_group_by_gid'
+#       - 'Defaults always_query_group_plugin'
+#       - 'Defaults always_query_group_plugin'
+#       - 'Defaults env_reset'
+#       - 'Defaults env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE KDEDIR LS_COLORS"'
+#       - 'Defaults env_keep += "MAIL QTDIR USERNAME LANG LC_ADDRESS LC_CTYPE"'
+#       - 'Defaults env_keep += "LC_COLLATE LC_IDENTIFICATION LC_MEASUREMENT LC_MESSAGES"'
+#       - 'Defaults env_keep += "LC_MONETARY LC_NAME LC_NUMERIC LC_PAPER LC_TELEPHONE"'
+#       - 'Defaults env_keep += "LC_TIME LC_ALL LANGUAGE LINGUAS _XKB_CHARSET XAUTHORITY"'
+#       - 'Defaults secure_path = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+#     includedir: /etc/sudoers.d
+#     host_alias: []
+#     user_alias: []
+#     runas_alias: []
+#     cmd_alias: []
+#     user_specification:
+#       - 'root ALL=(ALL) ALL'
+#       - '%wheel ALL=(ALL) ALL'
+
+## More examples at: 'molecule/default/vars/vars_test_sudoers.yml'
+## This file is used to verify tests with and contains some possible variants.
+
+...
