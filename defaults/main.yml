@@ -1,4 +1,9 @@
 ---
+### Software packages required for maintaining local users and groups.
+role_localusers_required_packages:
+  - shadow-utils
+  - libuser
+
 ### Managing user groups.
 ## Minimum required values: 'name' and 'state'
 ##
