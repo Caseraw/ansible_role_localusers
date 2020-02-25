@@ -4,7 +4,7 @@
   become: True
   gather_facts: False
   vars_files:
-    - ../../vars/main.yml
+    - ../../defaults/main.yml
     - vars/vars_test_groups.yml
     - vars/vars_test_users.yml
     - vars/vars_test_sudoers.yml
